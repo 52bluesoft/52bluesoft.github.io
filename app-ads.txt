@@ -1,6 +1,6 @@
 google.com, pub-1498928052286107, DIRECT, f08c47fec0942fa0
 
-OWNERDOMAIN=52bluegames.blogspot.com
+OWNERDOMAIN=52bluesoft.github.io
 ironsrc.com, 382479, DIRECT 
 
 rubiconproject.com, 24400, RESELLER, 0bfd66d529a55807
