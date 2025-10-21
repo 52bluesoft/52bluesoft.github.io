@@ -35,6 +35,111 @@
 <meta name="twitter:description" content="AI Calorie Tracker - Food Scan is a smart, AI-powered calorie tracker and food scanner that helps you manage your nutrition with ease. Instead of entering everything manually, you simply take a photo of your meal, and the app instantly estimates the calories, protein, carbs, fat, and sugar content. It's fast, accurate, and effortless." />
 <meta name="twitter:image"       content="https://52bluesoft.github.io/kcal-counter/assets/img/og-image.png" />
 
+    <script src="https://cdn.tailwindcss.com"></script>
+	
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'app-bg': '#f3f4f6', // Màu nền nhẹ
+                        'icon-shadow': 'rgba(0, 0, 0, 0.15)',
+                    }
+                }
+            }
+        }
+
+        // Mảng chứa thông tin các ứng dụng của bạn
+        // Thay đổi URL và Tên ứng dụng tại đây
+        const apps = [
+            { name: "Interior Generator", iconUrl: "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/91/32/25/9132252d-a722-6876-0b99-4988a194fbd0/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/217x0w.webp" },
+            { name: "Rock Identifier", iconUrl: "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/43/7e/e2/437ee2e6-8c19-0171-c35c-6b72fa69b842/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/217x0w.webp" },
+            { name: "AI Calorie Tracker", iconUrl: "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c6/29/ab/c629abb3-3dd0-a261-09d6-7fc66845cf72/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/217x0w.webp" },
+            { name: "Block Blast", iconUrl: "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/86/3a/22/863a22d6-301d-0a92-6f91-2f3f8234679c/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/217x0w.webp" },
+            { name: "Card Shuffle", iconUrl: "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/19/ec/93/19ec93cf-ab6a-5210-3768-ff2bf28624ea/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/217x0w.webp" },
+            { name: "Castle Match", iconUrl: "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/80/4b/6b/804b6ba6-c972-937b-365f-647106459563/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/217x0w.webp" },
+            // Thêm các icon khác nếu cần
+            { name: "Stack Ball", iconUrl: "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/2c/df/a2/2cdfa2fe-1904-5617-4f4c-dd8e51a548bc/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/217x0w.webp" },
+            { name: "Throw Knife", iconUrl: "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/09/cf/a7/09cfa709-c24c-b012-08d8-8239d201a8ea/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/217x0w.webp" },
+            { name: "Word Line", iconUrl: "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/4b/7f/02/4b7f024a-d51e-79b1-7d33-dccbfce7bf45/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/217x0w.webp" },
+            { name: "Helix Jump", iconUrl: "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/02/f4/db/02f4db9b-db77-7311-e0f8-74c6d86cafdc/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/217x0w.webp" },
+            { name: "Attack Hole", iconUrl: "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/b9/64/d6/b964d655-2b47-28a1-9d1a-34501458c16d/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/217x0w.webp" },
+            { name: "Bridge Race", iconUrl: "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/6a/15/51/6a155151-88a1-05a2-3441-c7603dff4396/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/217x0w.webp" },
+            { name: "Stickman Color", iconUrl: "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/e9/41/b7/e941b7d1-075b-10ad-0af1-610d6a1d91c3/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/217x0w.webp" },
+            { name: "Happy Aquarium", iconUrl: "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/dd/93/5f/dd935f77-b67b-ab66-1738-6263e2c43459/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/217x0w.webp" },
+            { name: "Tall Man Run", iconUrl: "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/24/8e/ae/248eaeff-2dc0-8fba-dadb-777ea06efad2/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/217x0w.webp" },
+        ];
+
+        let scrollInterval;
+        let isPaused = false;
+        const SCROLL_AMOUNT = 200; // Cuộn 200px mỗi lần
+        const SCROLL_INTERVAL_MS = 3000; // Cuộn sau mỗi 3 giây
+
+        /**
+         * Bắt đầu cuộn tự động
+         * @param {HTMLElement} container - Phần tử chứa cần cuộn
+         */
+        function startAutoScroll(container) {
+            if (scrollInterval) clearInterval(scrollInterval);
+
+            scrollInterval = setInterval(() => {
+                if (isPaused) return;
+
+                // Nếu đã cuộn đến cuối, quay lại đầu
+                // Cần 1 khoảng đệm nhỏ (ví dụ 1px) để đảm bảo điều kiện reset được kích hoạt
+                if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 1) {
+                    // Đặt lại về đầu với hiệu ứng mượt mà
+                    container.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    // Cuộn thêm một lượng nhất định
+                    container.scrollBy({ left: SCROLL_AMOUNT, behavior: 'smooth' });
+                }
+            }, SCROLL_INTERVAL_MS);
+        }
+
+        /**
+         * Xử lý khi trang được tải xong
+         */
+        window.onload = function() {
+            const container = document.getElementById('icon-container');
+            
+            // TẠO BẢN SAO: Nhân ba danh sách icons để đảm bảo nội dung tràn và tạo hiệu ứng cuộn liên tục
+            const allApps = [...apps, ...apps, ...apps]; 
+
+            // 1. Render các icons
+            container.innerHTML = allApps.map(app => `
+                <div class="flex-shrink-0 w-28 h-28 mx-4 flex flex-col items-center justify-center cursor-pointer transition-transform duration-300 hover:scale-105 group" 
+                     title="${app.name}">
+                    <img src="${app.iconUrl}" 
+                         alt="Icon ${app.name}" 
+                         class="w-16 h-16 rounded-2xl object-cover shadow-lg group-hover:shadow-xl transition-shadow duration-300"
+                         onerror="this.onerror=null;this.src='https://placehold.co/64x64/cccccc/000000?text=Icon'">
+                    <span class="mt-2 text-sm font-medium text-gray-700 text-center truncate w-full">${app.name}</span>
+                </div>
+            `).join('');
+
+            // 2. Bắt đầu cuộn tự động
+            startAutoScroll(container);
+
+            // 3. Tạm dừng cuộn khi di chuột vào (hover)
+            container.addEventListener('mouseenter', () => {
+                isPaused = true;
+            });
+            container.addEventListener('mouseleave', () => {
+                isPaused = false;
+            });
+            // Tạm dừng cuộn khi chạm vào (touch) trên thiết bị di động
+            container.addEventListener('touchstart', () => {
+                isPaused = true;
+            });
+            container.addEventListener('touchend', () => {
+                // Đợi một chút rồi tiếp tục cuộn sau khi người dùng ngừng thao tác
+                setTimeout(() => isPaused = false, 1000); 
+            });
+        };
+
+    </script>
+
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -140,6 +245,35 @@
             </div>
         </header>
 		
+
+    
+
+		
+		<!-- Quote/testimonial aside-->
+        <aside class="text-center bg-gradient-primary-to-secondary">
+            <div class="container px-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="w-full max-w-6xl bg-white shadow-2xl rounded-3xl p-6 md:p-10 border border-gray-100">
+        <h2 class="text-2xl md:text-3xl font-extrabold text-gray-800 mb-6 text-center tracking-tight">
+            52 Blue Apps & Games
+        </h2>
+        <p class="text-center text-sm text-gray-500 mb-8">
+            Our Creations: A gallery of modern apps and games by 52 Blue Studio
+        </p>
+        
+        <!-- Khối chứa Icon -->
+        <div id="icon-container" 
+             class="flex overflow-x-scroll no-scrollbar py-4 px-5 -mx-5 space-x-9 border-y border-gray-200"
+             style="box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);">
+            <!-- Nội dung Icons sẽ được chèn bởi JavaScript -->
+        </div>
+        
+
+    </div>
+                </div>
+            </div>
+        </aside>
+		
         <!-- Mashead header-->
         <header class="masthead">
             <div class="container px-5">
@@ -195,7 +329,7 @@
                 <div class="row gx-5 justify-content-center">
                     <div class="col-xl-8">
                         <div class="h2 fs-1 text-white mb-4">⭐️⭐️⭐️⭐️⭐️ </br>"I’ve been using AI Calorie Tracker - Food Scan for 6 months and it’s been a game-changer. The AI camera scan instantly logs calories and nutrients, so I no longer guess my portions. With clear progress charts and timely reminders, I’ve lost 5 kg of fat and feel more energized every day. Highly recommended for anyone serious about health!" - Samantha Brooks</div>
-                        <img src="assets/img/user-profile-image.png" alt="Kcal Counter" style="height: 12rem" />
+                        
                     </div>
                 </div>
             </div>
